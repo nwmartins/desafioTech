@@ -4,12 +4,17 @@ import com.biopark.challenge.model.Comunication;
 import com.biopark.challenge.repository.ComunicationRepository;
 import com.biopark.challenge.service.exception.DataIntegrityException;
 import com.biopark.challenge.service.exception.ObjectNotFoundException;
+import com.biopark.challenge.util.Messages;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.ResourceBundle;
 import java.util.UUID;
 
 @Service
@@ -36,11 +41,14 @@ public class ComunicationService {
 
     public Comunication save(Comunication comunication) {
         comunication.setId(null); //Pra ter certeza que o registro e novo
+        comunication.setUpdatedAt(LocalDateTime.now());
+        comunication.setCreatedAt(LocalDateTime.now());
         return comunicationRepository.save(comunication);
     }
 
     public Comunication update(Comunication comunication) {
         findById(comunication.getId()); //Caso o objeto n existir, ja ira retornar exception
+        comunication.setUpdatedAt(LocalDateTime.now());
         return comunicationRepository.save(comunication);
     }
 

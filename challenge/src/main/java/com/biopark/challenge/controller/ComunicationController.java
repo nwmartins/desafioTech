@@ -1,9 +1,11 @@
 package com.biopark.challenge.controller;
 
+import com.biopark.challenge.dto.ComunicationDTO;
 import com.biopark.challenge.model.Comunication;
 import com.biopark.challenge.model.Consumer;
 import com.biopark.challenge.service.ComunicationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -31,12 +33,14 @@ public class ComunicationController {
     }
 
     @RequestMapping(value = "comunication", method = RequestMethod.POST)
-    public ResponseEntity<Void> save(@RequestBody Comunication comunication) {
-        comunication = comunicationService.save(comunication);
+    public ResponseEntity<Comunication> save(@RequestBody ComunicationDTO dto) {
+        Comunication comunication = comunicationService.save(dto.fromDTO());
         //Obtem a nova URI do novo Objeto para retornar no Header
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().
                 path("/{id}").buildAndExpand(comunication.getId()).toUri();
-        return ResponseEntity.created(uri).build(); //Ja retorna 201
+        ResponseEntity.created(uri).build();
+        //return ResponseEntity.created(uri).build(); //Ja retorna 201
+        return new ResponseEntity<>(comunication, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "comunication/{id}", method = RequestMethod.PUT)

@@ -29,7 +29,7 @@ public class SwaggerConfig {
     public ApiInfo metaInfo() {
         return new ApiInfo(
             "BackEnd Challenge API REST",
-            "API REST Solicitada para o desafio da Wealth Systems.",
+            "API REST Solicitada para o desafio Tech.",
             "1.0",
             "Terms of Service",
             new Contact("Norton Wagner Martins", "", "norton_martins@hotmail.com"),
