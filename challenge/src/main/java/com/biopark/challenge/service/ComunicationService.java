@@ -4,17 +4,13 @@ import com.biopark.challenge.model.Comunication;
 import com.biopark.challenge.repository.ComunicationRepository;
 import com.biopark.challenge.service.exception.DataIntegrityException;
 import com.biopark.challenge.service.exception.ObjectNotFoundException;
-import com.biopark.challenge.util.Messages;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import java.util.UUID;
 
 @Service

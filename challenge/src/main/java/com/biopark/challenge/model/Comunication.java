@@ -1,9 +1,9 @@
 package com.biopark.challenge.model;
 
+import com.biopark.challenge.util.Status;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -22,14 +22,13 @@ public class Comunication implements Serializable {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    @NotEmpty(message = "Can't be empty!")
     private LocalDateTime dateTimeSend;
 
     private String reciver;
 
     private String message;
 
-    private String status;
+    private Status status;
 
     private LocalDateTime createdAt;
 
@@ -39,7 +38,7 @@ public class Comunication implements Serializable {
     }
 
     public Comunication(UUID id, LocalDateTime dateTimeSend, String reciver, String message,
-                        String status) {
+                        Status status) {
         this.id = id;
         this.dateTimeSend = dateTimeSend;
         this.reciver = reciver;
@@ -79,11 +78,11 @@ public class Comunication implements Serializable {
         this.message = message;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(final String status) {
+    public void setStatus(final Status status) {
         this.status = status;
     }
 
